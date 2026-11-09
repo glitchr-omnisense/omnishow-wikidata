@@ -1,27 +1,27 @@
 <?php
 
-namespace Omnifilm\Wikidata\Tests;
+namespace Omnishow\Wikidata\Tests;
 
-use Omnifilm\Exception\InvalidConfigException;
-use Omnifilm\Exception\NotSupportedException;
-use Omnifilm\Exception\ProviderException;
-use Omnifilm\Model\Credit;
-use Omnifilm\Model\ImageKind;
-use Omnifilm\Model\Query;
-use Omnifilm\Model\Role;
-use Omnifilm\Model\Work;
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Model\WorkType;
-use Omnifilm\Testing\RecordedHttpClient;
-use Omnifilm\Wikidata\WikidataFactory;
-use Omnifilm\Wikidata\WikidataProvider;
+use Omnishow\Exception\InvalidConfigException;
+use Omnishow\Exception\NotSupportedException;
+use Omnishow\Exception\ProviderException;
+use Omnishow\Model\Credit;
+use Omnishow\Model\ImageKind;
+use Omnishow\Model\Query;
+use Omnishow\Model\Role;
+use Omnishow\Model\Work;
+use Omnishow\Model\WorkRef;
+use Omnishow\Model\WorkType;
+use Omnishow\Testing\RecordedHttpClient;
+use Omnishow\Wikidata\WikidataFactory;
+use Omnishow\Wikidata\WikidataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /** Wikidata's answers as recorded on 2026-10-24 (claims trimmed to the properties read, references dropped). */
 final class WikidataProviderTest extends TestCase
 {
-    private const UA = 'omnifilm-tests/1.0 (+https://github.com/glitchr-omnisense/omnifilm)';
+    private const UA = 'omnishow-tests/1.0 (+https://github.com/glitchr-omnisense/omnishow)';
 
     public function testASearchIsNarrowedToFilmsOnTheServerAndReadInOneMoreCall(): void
     {

@@ -1,6 +1,6 @@
-# omnifilm/wikidata
+# omnishow/wikidata
 
-Wikidata for [omnisense/omnifilm](https://github.com/glitchr-omnisense/omnifilm): films, series and
+Wikidata for [omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow): films, series and
 episodes from Wikidata's open records, with no key, through the MediaWiki API
 (`https://www.wikidata.org/w/api.php`). The provider calls, with `format=json` and
 `formatversion=1`:
@@ -18,10 +18,10 @@ named with `api`.
 ## Installation
 
 ```sh
-composer require omnifilm/wikidata
+composer require omnishow/wikidata
 ```
 
-Requires PHP 8.2, `omnisense/omnifilm` (1.x) and `symfony/http-client` (6.4, 7 or 8).
+Requires PHP 8.2, `omnisense/omnishow` (1.x) and `symfony/http-client` (6.4, 7 or 8).
 
 ## Credentials
 
@@ -115,15 +115,15 @@ Run live on 2026-10-26 (15:22 UTC), in the core's harness - five calls:
 
 require __DIR__.'/vendor/autoload.php';
 
-use Omnifilm\Model\Query;
-use Omnifilm\Model\Role;
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Model\WorkType;
-use Omnifilm\Wikidata\WikidataFactory;
+use Omnishow\Model\Query;
+use Omnishow\Model\Role;
+use Omnishow\Model\WorkRef;
+use Omnishow\Model\WorkType;
+use Omnishow\Wikidata\WikidataFactory;
 use Symfony\Component\HttpClient\HttpClient;
 
 $wikidata = (new WikidataFactory(HttpClient::create(['timeout' => 30])))->create([
-    'user_agent' => 'OmnisenseDocs/1.0 (https://github.com/glitchr-omnisense/omnifilm)',
+    'user_agent' => 'OmnisenseDocs/1.0 (https://github.com/glitchr-omnisense/omnishow)',
 ]);
 
 foreach ($wikidata->search(new Query('Stalker', WorkType::Movie, 1979, 'fr', limit: 3)) as $work) {
@@ -145,15 +145,15 @@ cinéma de science-fiction, film d'art, drame, arthouse science fiction film
 Andreï Tarkovski
 ```
 
-In Symfony (no bundle: [the core's Symfony page](https://github.com/glitchr-omnisense/omnifilm/blob/1.x/docs/symfony.md)):
+In Symfony (no bundle: [the core's Symfony page](https://github.com/glitchr-omnisense/omnishow/blob/1.x/docs/symfony.md)):
 
 ```yaml
 services:
-    Omnifilm\Wikidata\WikidataFactory:
+    Omnishow\Wikidata\WikidataFactory:
         arguments: ['@http_client']
-    Omnifilm\Registry:
+    Omnishow\Registry:
         arguments:
-            $factories: ['@Omnifilm\Wikidata\WikidataFactory']
+            $factories: ['@Omnishow\Wikidata\WikidataFactory']
             $config:
                 open: { factory: wikidata, options: { user_agent: 'MySite/1.0 (https://example.org; films@example.org)', language: fr } }
 ```
@@ -176,7 +176,7 @@ its people labelled in the language asked, a work of another type or unknown, an
 with a 200, the User-Agent required. `Tests/BareTest.php` loads every class with the package's
 requirements alone.
 
-Verified live: `docker compose run --rm omnifilm live` (`Tests/LiveTest.php`), 2026-10-24 -
+Verified live: `docker compose run --rm omnishow live` (`Tests/LiveTest.php`), 2026-10-24 -
 Stalker by a search narrowed to 1979, The Shawshank Redemption by its IMDb number (TMDB 278, Frank
 Darabont), Game of Thrones by its TMDB series number (Q23572, tt0944947, TheTVDB 121361, 2011);
 and on 2026-10-26 the example above and Game of Thrones again through `Registry::work()`.

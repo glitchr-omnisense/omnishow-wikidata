@@ -1,6 +1,6 @@
-# omnifilm/wikidata
+# omnishow/wikidata
 
-[omnisense/omnifilm](https://github.com/glitchr-omnisense/omnifilm)'s Wikidata, under any PHP host,
+[omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow)'s Wikidata, under any PHP host,
 with no key: films, series and episodes from Wikidata's open records through the MediaWiki API.
 
 - **search** - CirrusSearch narrowed on the server to works (`haswbstatement:P31=Q11424|...`:
@@ -13,7 +13,7 @@ with no key: films, series and episodes from Wikidata's open records through the
   poster, logo and image as Wikimedia Commons file paths.
 
 ```php
-use Omnifilm\Wikidata\WikidataFactory;
+use Omnishow\Wikidata\WikidataFactory;
 
 $provider = (new WikidataFactory($httpClient))->create([
     'user_agent' => 'MySite/1.0 (https://example.org; films@example.org)',
@@ -42,7 +42,7 @@ Options: `user_agent` (required), `language` ("en"), `api` (Wikidata's; another 
 - Verified (the core's harness, PHP 8.4): search, lookups and labels on Wikidata's answers
   recorded on 2026-10-24 (claims trimmed to the properties read, references dropped); an error
   answered with a 200 (maxlag) raised; the User-Agent required; `BareTest`; PHPStan max.
-- Verified live (`docker compose run --rm omnifilm live`, 2026-10-24): Stalker found by a search
+- Verified live (`docker compose run --rm omnishow live`, 2026-10-24): Stalker found by a search
   narrowed to 1979, The Shawshank Redemption by its IMDb number (TMDB 278, Frank Darabont), Game
   of Thrones by its TMDB series number (Q23572, tt0944947, TheTVDB 121361, 2011).
 - Not done: episodes of a season (Wikidata's season and ordinal qualifiers vary too much from one

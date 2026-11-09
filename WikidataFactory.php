@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnifilm\Wikidata;
+namespace Omnishow\Wikidata;
 
-use Omnifilm\Config;
-use Omnifilm\Exception\InvalidConfigException;
-use Omnifilm\Http\JsonClient;
-use Omnifilm\ProviderFactory;
-use Omnifilm\ProviderInterface;
+use Omnishow\Config;
+use Omnishow\Exception\InvalidConfigException;
+use Omnishow\Http\JsonClient;
+use Omnishow\ProviderFactory;
+use Omnishow\ProviderInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -26,9 +26,9 @@ final class WikidataFactory extends ProviderFactory
     protected function populate(Config $c): void
     {
         $c->defaults([
-            'omnifilm.factory_name' => 'wikidata',
-            'omnifilm.factory_title' => 'Wikidata',
-            'omnifilm.required_options' => ['user_agent'],
+            'omnishow.factory_name' => 'wikidata',
+            'omnishow.factory_title' => 'Wikidata',
+            'omnishow.required_options' => ['user_agent'],
             'api' => 'https://www.wikidata.org/w/api.php',
             'language' => 'en',
             'maxlag' => 0,

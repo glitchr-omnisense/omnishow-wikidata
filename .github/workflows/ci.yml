@@ -16,4 +16,4 @@ jobs:
   package:
     uses: glitchr-studio/ci/.github/workflows/php-package.yml@main
     with:
-      smoke-class: 'Omnifilm\Wikidata\WikidataProvider'
+      smoke-class: 'Omnishow\Wikidata\WikidataProvider'

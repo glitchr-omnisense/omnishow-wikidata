@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnifilm\Wikidata\Tests;
+namespace Omnishow\Wikidata\Tests;
 
-use Omnifilm\Model\Query;
-use Omnifilm\Model\Role;
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Model\WorkType;
-use Omnifilm\Wikidata\WikidataFactory;
-use Omnifilm\Wikidata\WikidataProvider;
+use Omnishow\Model\Query;
+use Omnishow\Model\Role;
+use Omnishow\Model\WorkRef;
+use Omnishow\Model\WorkType;
+use Omnishow\Wikidata\WikidataFactory;
+use Omnishow\Wikidata\WikidataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -16,13 +16,13 @@ use Symfony\Component\HttpClient\HttpClient;
 /**
  * Wikidata itself, within its policies (a named User-Agent, a handful of
  * requests one after another): a search, a film by its IMDb number, a
- * series by its TMDB number. `docker compose run --rm omnifilm live`; never
+ * series by its TMDB number. `docker compose run --rm omnishow live`; never
  * in the default run.
  */
 #[Group('live')]
 final class LiveTest extends TestCase
 {
-    private const UA = 'omnifilm-tests/1.0 (+https://github.com/glitchr-omnisense/omnifilm)';
+    private const UA = 'omnishow-tests/1.0 (+https://github.com/glitchr-omnisense/omnishow)';
 
     public function testSearchAndLookups(): void
     {

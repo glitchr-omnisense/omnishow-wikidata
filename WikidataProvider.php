@@ -1,25 +1,25 @@
 <?php
 
-namespace Omnifilm\Wikidata;
+namespace Omnishow\Wikidata;
 
-use Omnifilm\Capabilities;
-use Omnifilm\Exception\NotSupportedException;
-use Omnifilm\Exception\ProviderException;
-use Omnifilm\Http\Data;
-use Omnifilm\Http\JsonClient;
-use Omnifilm\LookupInterface;
-use Omnifilm\Model\Credit;
-use Omnifilm\Model\Identifiers;
-use Omnifilm\Model\Image;
-use Omnifilm\Model\ImageKind;
-use Omnifilm\Model\Query;
-use Omnifilm\Model\Role;
-use Omnifilm\Model\Scheme;
-use Omnifilm\Model\Work;
-use Omnifilm\Model\WorkRef;
-use Omnifilm\Model\WorkType;
-use Omnifilm\ProviderInterface;
-use Omnifilm\SearchInterface;
+use Omnishow\Capabilities;
+use Omnishow\Exception\NotSupportedException;
+use Omnishow\Exception\ProviderException;
+use Omnishow\Http\Data;
+use Omnishow\Http\JsonClient;
+use Omnishow\LookupInterface;
+use Omnishow\Model\Credit;
+use Omnishow\Model\Identifiers;
+use Omnishow\Model\Image;
+use Omnishow\Model\ImageKind;
+use Omnishow\Model\Query;
+use Omnishow\Model\Role;
+use Omnishow\Model\Scheme;
+use Omnishow\Model\Work;
+use Omnishow\Model\WorkRef;
+use Omnishow\Model\WorkType;
+use Omnishow\ProviderInterface;
+use Omnishow\SearchInterface;
 
 /**
  * Wikidata's records of films, series and episodes, through the MediaWiki
