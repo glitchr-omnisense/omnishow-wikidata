@@ -1,0 +1,47 @@
+{
+    "$schema": "https://github.com/glitchr-omnisense/contracts/blob/1.x/resources/usage-policy.schema.json",
+    "provider": "wikidata",
+    "rateLimits": [
+        {
+            "max": 200,
+            "window": "minute",
+            "scope": "application",
+            "operations": [],
+            "note": "Wikimedia's rate limits of 2026 (mediawiki.org/wiki/Wikimedia_APIs/Rate_limits, \"subject to experimentation and change\"): 200 requests a minute for an unauthenticated client with a compliant User-Agent, 10 a minute per IP for an unidentified one. The robot policy also asks one request at a time on the Action API, below 5 a second, and 5 s of pause after a request that took more than 1 s. A 429 or 503 with Retry-After is honoured."
+        }
+    ],
+    "rights": {
+        "commercial": "allowed",
+        "openSourceRequired": false,
+        "caching": {
+            "permission": "allowed",
+            "maxTtl": null
+        },
+        "storage": "allowed",
+        "redistribution": "allowed",
+        "attribution": {
+            "required": false,
+            "text": "Data from Wikidata (CC0); pictures from Wikimedia Commons under their own licences",
+            "url": "https://www.wikidata.org/",
+            "where": [
+                "credits"
+            ]
+        },
+        "licence": "CC0-1.0"
+    },
+    "requirements": {
+        "key": false,
+        "userAgent": {
+            "required": true,
+            "pattern": "~^[^\\s/]+/\\S+.*\\(.*(?:@|https?://).*\\)~"
+        }
+    },
+    "provenance": {
+        "terms": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+        "policy": "https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_API_Usage_Guidelines",
+        "verifiedAt": "2026-11-10",
+        "declaredBy": "maintainer",
+        "contact": null,
+        "notes": "Structured data under CC0 (no attribution required; \"Powered by Wikidata\" is welcome). Pictures from Wikimedia Commons keep each file's own licence and credit, on its description page. Every request names the client, its version and a contact in its User-Agent (\"CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org) generic-library/0.0\", foundation.wikimedia.org/wiki/Policy:User-Agent_policy); a missing or generic one is refused (403). The API may not be sublicensed or leased. Serial requests and maxlag for batch work (mediawiki.org/wiki/API:Etiquette); wikitech.wikimedia.org/wiki/Robot_policy."
+    }
+}

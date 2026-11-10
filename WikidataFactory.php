@@ -43,7 +43,7 @@ final class WikidataFactory extends ProviderFactory
         }
 
         return new WikidataProvider(
-            new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'Wikidata', ['User-Agent' => $agent, 'Accept' => 'application/json']),
+            new JsonClient($this->http ?? HttpClient::create(['timeout' => 20]), 'Wikidata', ['User-Agent' => $agent, 'Accept' => 'application/json'], $c->backoff()),
             (string) $c->string('api'),
             (string) $c->string('language'),
             $c->int('maxlag'),

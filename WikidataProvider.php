@@ -2,6 +2,8 @@
 
 namespace Omnishow\Wikidata;
 
+use Omnisense\Contracts\Policy\DeclaresUsagePolicyInterface;
+use Omnisense\Contracts\Policy\UsagePolicy;
 use Omnishow\Capabilities;
 use Omnishow\Exception\NotSupportedException;
 use Omnishow\Exception\ProviderException;
@@ -29,8 +31,13 @@ use Omnishow\SearchInterface;
  * second call. Every request names the application (User-Agent), as
  * Wikimedia's policy asks; maxlag is sent when configured (batch jobs).
  */
-final class WikidataProvider implements ProviderInterface, SearchInterface, LookupInterface
+final class WikidataProvider implements ProviderInterface, SearchInterface, LookupInterface, DeclaresUsagePolicyInterface
 {
+    /** Wikidata's usage policy, as its terms read on the day it says (provenance.verifiedAt). */
+    public const POLICY = __DIR__.'/policy.json';
+
+    private static ?UsagePolicy $policy = null;
+
     /** The classes ("instance of", P31) a work of each type is found by. */
     public const CLASSES = [
         'movie' => ['Q11424', 'Q506240', 'Q202866', 'Q24869', 'Q24862', 'Q93204', 'Q226730'],
@@ -67,6 +74,11 @@ final class WikidataProvider implements ProviderInterface, SearchInterface, Look
         return 'Wikidata';
     }
 
+    public function usagePolicy(): UsagePolicy
+    {
+        return self::$policy ??= UsagePolicy::fromFile(self::POLICY);
+    }
+
     public function capabilities(): Capabilities
     {
         return new Capabilities(
@@ -83,6 +95,7 @@ final class WikidataProvider implements ProviderInterface, SearchInterface, Look
             attribution: 'Data from Wikidata (CC0); pictures from Wikimedia Commons under their own licences',
             terms: ['https://foundation.wikimedia.org/wiki/Policy:User-Agent_policy', 'https://www.mediawiki.org/wiki/API:Etiquette', 'https://www.wikidata.org/wiki/Wikidata:Licensing'],
             keyless: true,
+            policy: $this->usagePolicy(),
         );
     }
 

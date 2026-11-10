@@ -183,6 +183,19 @@ and on 2026-10-26 the example above and Game of Thrones again through `Registry:
 
 Not done: episodes of a season; people's IMDb numbers.
 
+## Usage policy
+
+The package declares Wikimedia's usage policy as data, in [policy.json](../policy.json)
+(omnisense/contracts' schema, read at its sources on 2026-11-10): rate limits 200 requests a minute
+for an unauthenticated client with a compliant User-Agent (Wikimedia's 2026 limits, still changing),
+one request at a time below 5 a second by the robot policy; the data under CC0 (no credit required,
+"Powered by Wikidata" welcome), Commons pictures under each file's own licence and credit, a
+User-Agent with a name, a version and a contact. Through omnishow's registry every call is held to
+it: the 201st call of a minute is refused before it reaches Wikidata, a 429 and its `Retry-After`
+hold every next call until the wait is over (`UsageLimitReachedException`), and a site may tighten
+the policy in its configuration (`'policy' => [...]`), never loosen it. What the terms do not say is
+declared unknown; the sources and the details are in the file's `provenance`.
+
 ## Responsibility
 
 An independent, unofficial client, affiliated with the Wikimedia Foundation in no way. Whoever runs
