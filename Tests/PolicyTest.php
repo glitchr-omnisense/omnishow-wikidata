@@ -31,6 +31,7 @@ final class PolicyTest extends TestCase
         self::assertSame('2026-11-10', $policy->provenance->verifiedAt);
         self::assertFileExists(WikidataProvider::POLICY);
         self::assertSame(['200/minute/application/*'], array_map(static fn ($l) => $l->id(), $policy->rateLimits ?? []));
+        self::assertSame(1, $policy->concurrency, 'the robot policy: one request at a time on the Action API');
         self::assertSame('CC0-1.0', $policy->rights->licence);
         self::assertTrue($policy->requirements->userAgent);
         self::assertTrue($policy->requirements->acceptsUserAgent(self::OPTIONS['user_agent']));
@@ -88,6 +89,15 @@ final class PolicyTest extends TestCase
 
         $this->expectException(InvalidPolicyException::class);
         $this->expectExceptionMessage('200 a minute');
+        $registry->search('films');
+    }
+
+    public function testASiteCannotRaiseTheConcurrency(): void
+    {
+        $registry = new Registry([new WikidataFactory(RecordedHttpClient::routes([]))], ['films' => ['factory' => 'wikidata', 'options' => self::OPTIONS, 'policy' => ['concurrency' => 3]]]);
+
+        $this->expectException(InvalidPolicyException::class);
+        $this->expectExceptionMessage('concurrency');
         $registry->search('films');
     }
 }

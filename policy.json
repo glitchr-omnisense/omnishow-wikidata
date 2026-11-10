@@ -7,9 +7,10 @@
             "window": "minute",
             "scope": "application",
             "operations": [],
-            "note": "Wikimedia's rate limits of 2026 (mediawiki.org/wiki/Wikimedia_APIs/Rate_limits, \"subject to experimentation and change\"): 200 requests a minute for an unauthenticated client with a compliant User-Agent, 10 a minute per IP for an unidentified one. The robot policy also asks one request at a time on the Action API, below 5 a second, and 5 s of pause after a request that took more than 1 s. A 429 or 503 with Retry-After is honoured."
+            "note": "Wikimedia's rate limits of 2026 (mediawiki.org/wiki/Wikimedia_APIs/Rate_limits, \"subject to experimentation and change\"): 200 requests a minute for an unauthenticated client with a compliant User-Agent, 10 a minute per IP for an unidentified one. The robot policy also asks one request at a time on the Action API for an unauthenticated client (3 overall when authenticated: concurrency 1 declared), below 5 a second, and 5 s of pause after a request that took more than 1 s. A 429 or 503 with Retry-After is honoured."
         }
     ],
+    "concurrency": 1,
     "rights": {
         "commercial": "allowed",
         "openSourceRequired": false,

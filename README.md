@@ -53,7 +53,8 @@ Options: `user_agent` (required), `language` ("en"), `api` (Wikidata's; another 
 The package declares Wikimedia's usage policy as data, in [policy.json](policy.json)
 (omnisense/contracts' schema, read at its sources on 2026-11-10): rate limits 200 requests a minute
 for an unauthenticated client with a compliant User-Agent (Wikimedia's 2026 limits, still changing),
-one request at a time below 5 a second by the robot policy; the data under CC0 (no credit required,
+one request at a time below 5 a second by the robot policy (`"concurrency": 1`, the Action API
+unauthenticated); the data under CC0 (no credit required,
 "Powered by Wikidata" welcome), Commons pictures under each file's own licence and credit, a
 User-Agent with a name, a version and a contact. Through omnishow's registry every call is held to
 it: the 201st call of a minute is refused before it reaches Wikidata, a 429 and its `Retry-After`
