@@ -24,6 +24,18 @@ $stalker = $provider->work(WorkRef::imdb('tt0079944'), 'fr');
 Options: `user_agent` (required), `language` ("en"), `api` (Wikidata's; another Wikibase's),
 `maxlag` (0: not sent - set it for batch jobs).
 
+## Install
+
+```sh
+composer require omnishow/wikidata
+```
+
+It requires `omnisense/omnishow` `^1.0`, installed with it. A real call needs: no key and no
+account; Wikimedia asks every client for a user agent that names it and gives a contact (the
+`user_agent` option). The first call, with this package:
+[omnisense/omnishow](https://github.com/glitchr-omnisense/omnishow#install-and-a-first-call)'s
+README.
+
 ## Wikimedia's policies, as read on 2026-10-24
 
 - [User-Agent policy](https://foundation.wikimedia.org/wiki/Policy:User-Agent_policy): a
